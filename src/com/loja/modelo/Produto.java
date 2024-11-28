@@ -1,15 +1,14 @@
 package com.loja.modelo;
 
-import java.util.Objects;
-
 public class Produto {
+
     private int id;
     private String nome;
     private double preco;
     private int quantidadeEstoque;
     private String categoria;
 
-    // Construtor completo sem id (id será atribuído automaticamente)
+    // Construtor completo (sem id, o id será gerado automaticamente)
     public Produto(String nome, double preco, int quantidadeEstoque, String categoria) {
         this.nome = nome;
         this.preco = preco;
@@ -17,7 +16,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    // Getters e Setters
+    // Getters e setters
     public int getId() {
         return id;
     }
@@ -58,13 +57,14 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    // Método toString para exibir os dados do produto de forma formatada
+    // Método toString para exibir o produto de forma formatada
     @Override
     public String toString() {
-        return "ID: " + id + " | Nome: " + nome + " | Preço: R$ " + preco + " | Estoque: " + quantidadeEstoque + " | Categoria: " + categoria;
+        return String.format("ID: %d | Nome: %s | Preço: R$ %.2f | Estoque: %d | Categoria: %s",
+                id, nome, preco, quantidadeEstoque, categoria);
     }
 
-    // equals() e hashCode() baseados no id
+    // Método equals e hashCode baseado no ID
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -75,6 +75,6 @@ public class Produto {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Integer.hashCode(id);
     }
 }
